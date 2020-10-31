@@ -192,16 +192,27 @@
   }
 
   .form__field {
-    width: calc(40% - 21rem);
-    transition: width 0.5s ease 1s;
     margin-left: auto;
+    width: calc(40% - 21rem);
   }
 }
 
 .screen--game.active {
   .chat__footer {
     .form__field {
-      width: calc(100% - 21rem);
+      animation: chatFullWidth .7s ease-out forwards ;
     }
   }
+}
+
+@keyframes chatFullWidth {
+    0% {
+      width: calc(40% - 21rem);
+    }
+    50% {
+      width: calc(40% - 21rem);
+    }
+    100% {
+      width: calc(100% - 21rem);
+    }
 }

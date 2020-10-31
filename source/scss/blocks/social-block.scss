@@ -40,6 +40,7 @@
     border: 2px solid $c-light;
     z-index: -1;
     transition: 0.3s;
+
   }
 
   svg {
@@ -84,6 +85,15 @@
       border-color: $c-purple;
     }
   }
+}
+
+@keyframes socialLoad {
+    0% {
+      transform: scale(0)
+    }
+    100% {
+      transform: scale(1)
+    }
 }
 
 .social-block__list {

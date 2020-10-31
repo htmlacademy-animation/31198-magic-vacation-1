@@ -10513,6 +10513,9 @@ __webpack_require__.r(__webpack_exports__);
           },
           resize: () => {
             storySlider.update();
+          },
+          transitionStart: () => {
+
           }
         },
         observer: true,
@@ -10522,6 +10525,7 @@ __webpack_require__.r(__webpack_exports__);
       storySlider = new swiper__WEBPACK_IMPORTED_MODULE_0__["default"](`.js-slider`, {
         slidesPerView: 2,
         slidesPerGroup: 2,
+        speed: 700,
         pagination: {
           el: `.swiper-pagination`,
           type: `fraction`
@@ -10535,6 +10539,14 @@ __webpack_require__.r(__webpack_exports__);
         },
         on: {
           slideChange: () => {
+            /*console.log()
+            document.querySelectorAll(".slider__item")[0].classList.remove("load");
+            storySlider.$el.classList.add("load");
+            storySlider.$el.nextSibling.classList.add("load");
+            */
+
+            
+
             if (storySlider.activeIndex === 0) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
             } else if (storySlider.activeIndex === 2) {
@@ -10547,6 +10559,27 @@ __webpack_require__.r(__webpack_exports__);
           },
           resize: () => {
             storySlider.update();
+          },
+          transitionStart: () => {
+            var el = document.querySelectorAll(".slider__item--load")[0];
+            var el2 = document.querySelectorAll(".slider__item--load2")[0];
+            if (el&& el2) {
+              el.classList.remove("slider__item--load");
+              el2.classList.remove("slider__item--load2");
+            }
+          },
+          transitionEnd: () => {
+            if (storySlider) {
+              //console.log(storySlider.activeIndex)
+
+              var el = document.querySelectorAll(".slider__item")[storySlider.activeIndex];
+              var el2 = document.querySelectorAll(".slider__item")[storySlider.activeIndex+1];
+              if (el && el2) {
+                el.classList.add("slider__item--load");
+                el2.classList.add("slider__item--load2");
+              }
+            }
+            
           }
         },
         observer: true,

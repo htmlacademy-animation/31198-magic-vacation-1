@@ -3003,13 +3003,13 @@ img {
       .slider__item:nth-child(2) .slider__item-text {
         margin-top: auto; } }
 
-.active .slider__item--load2 .slider__item-text {
+.active .swiper-slide-next .slider__item-text {
   animation: fadeInRight .5s ease-out forwards .5s;
   /*opacity: 1;
   transform: translateX(0%);*/
   /*transition-delay: 0.5s;*/ }
 
-.active .slider__item--load .slider__item-text {
+.active .swiper-slide-active .slider__item-text {
   animation: fadeInRight .5s ease-out forwards .3s;
   /*opacity: 1;
   transform: translateX(0%);*/

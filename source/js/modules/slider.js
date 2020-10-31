@@ -26,12 +26,6 @@ export default () => {
             } else if (storySlider.activeIndex === 6 || storySlider.activeIndex === 7) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg"), linear-gradient(180deg, rgba(45, 39, 63, 0) 0%, #2F2A42 16.85%)`;
             }
-          },
-          resize: () => {
-            storySlider.update();
-          },
-          transitionStart: () => {
-
           }
         },
         observer: true,
@@ -55,14 +49,6 @@ export default () => {
         },
         on: {
           slideChange: () => {
-            /*console.log()
-            document.querySelectorAll(".slider__item")[0].classList.remove("load");
-            storySlider.$el.classList.add("load");
-            storySlider.$el.nextSibling.classList.add("load");
-            */
-
-            
-
             if (storySlider.activeIndex === 0) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
             } else if (storySlider.activeIndex === 2) {
@@ -75,27 +61,6 @@ export default () => {
           },
           resize: () => {
             storySlider.update();
-          },
-          transitionStart: () => {
-            var el = document.querySelectorAll(".slider__item--load")[0];
-            var el2 = document.querySelectorAll(".slider__item--load2")[0];
-            if (el&& el2) {
-              el.classList.remove("slider__item--load");
-              el2.classList.remove("slider__item--load2");
-            }
-          },
-          transitionEnd: () => {
-            if (storySlider) {
-              //console.log(storySlider.activeIndex)
-
-              var el = document.querySelectorAll(".slider__item")[storySlider.activeIndex];
-              var el2 = document.querySelectorAll(".slider__item")[storySlider.activeIndex+1];
-              if (el && el2) {
-                el.classList.add("slider__item--load");
-                el2.classList.add("slider__item--load2");
-              }
-            }
-            
           }
         },
         observer: true,

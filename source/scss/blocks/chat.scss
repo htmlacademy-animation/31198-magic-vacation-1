@@ -66,6 +66,7 @@
   font-size: 2.4rem;
   line-height: 1.2;
 
+
   @media (min-width: $stop-scaling) {
     margin-bottom: 20px;
     font-size: 24px;
@@ -185,4 +186,33 @@
 
 .chat__footer {
   margin-top: auto;
+
+  .form__button {
+    flex-grow: 0;
+  }
+
+  .form__field {
+    margin-left: auto;
+    width: calc(40% - 21rem);
+  }
+}
+
+.screen--game.active {
+  .chat__footer {
+    .form__field {
+      animation: chatFullWidth .7s ease-out forwards ;
+    }
+  }
+}
+
+@keyframes chatFullWidth {
+    0% {
+      width: calc(40% - 21rem);
+    }
+    50% {
+      width: calc(40% - 21rem);
+    }
+    100% {
+      width: calc(100% - 21rem);
+    }
 }

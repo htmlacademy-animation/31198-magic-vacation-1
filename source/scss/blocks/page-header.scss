@@ -37,7 +37,9 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
-  animation: logoFadeIn .5s ease-out forwards ;
+  opacity: 0;
+  transform: translateX(-25%);
+  transition: 0.5s cubic-bezier(.17,.67,.4,1);
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -72,18 +74,13 @@
     width: 100%;
     height: auto;
   }
+
+  .load & {
+    opacity: 1;
+    transform: translateX(0%)
+  }
 }
 
-@keyframes logoFadeIn {
-    0% {
-      opacity: 0;
-      transform: translateX(-50%)
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0%)
-    }
-}
 
 .page-header__toggler {
   @include btn-reset;
@@ -191,7 +188,12 @@
   font-size: 1.2rem;
   line-height: 1.0418;
   color: $c-light;
-  animation: menuFadeIn .7s ease-out forwards ;
+  opacity: 0;
+  transition: .5s cubic-bezier(.17,.67,.4,1); 
+
+  .load & {
+    opacity: 1;
+  }
 
   @media (min-width: $stop-scaling) {
     font-size: 12px;
@@ -282,12 +284,13 @@
         right: 0;
         background-color: $c-dark;
       }
+
+
     }
 
-    &.active {
-      &::after {
-        width: 100%;
-      }
+    .load &.active::after {
+      width: 100%;
+      left: 0;
     }
 
     &:hover,
@@ -296,7 +299,6 @@
       outline: none;
 
       &::after {
-        /*opacity: 1;*/
         background-color: $c-purple;
         width: 100%;
         left: 0;
@@ -305,14 +307,6 @@
   }
 }
 
-@keyframes menuFadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-}
 
 
 .page-header__social {

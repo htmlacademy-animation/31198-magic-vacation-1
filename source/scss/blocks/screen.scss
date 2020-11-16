@@ -1,10 +1,12 @@
 .screen {
   position: relative;
   display: flex;
+  width: 100%;
   flex-direction: column;
   min-height: 100vh;
   z-index: 1;
   overflow: hidden;
+
 
   &--hidden {
     display: none;
@@ -309,13 +311,36 @@
   }
 }
 
+
 .screen--prizes {
-  background-color: $c-dark;
+  position:relative;
+  z-index: 3;
+
+  & .screen__wrapper {
+    opacity: 0;
+  }
+  &.active .screen__wrapper {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
 }
+
+
+
+@keyframes prizes_fone {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
 
 .screen--game {
   position: relative;
   background-color: $c-dark;
+  z-index: 3;
 
   &::before {
     content: "";
@@ -361,4 +386,33 @@
 
 .screen--rules {
   background-color: $c-dark;
+  z-index: 3;
 }
+
+.animation-fone {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  background-color: $c-dark;
+}
+.animation-fone.active {
+  height: 100vh;
+}
+
+
+.fone-screen {
+  position: fixed;
+  background-color: $c-dark;
+  width: 100vw;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  z-index: 2;
+  transition: 0.5s ease;
+
+  .show-bq & {
+    height: 100vh;
+  }
+}
+
+ 

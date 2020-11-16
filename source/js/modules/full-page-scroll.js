@@ -1,6 +1,6 @@
 import throttle from 'lodash/throttle';
 
-var screen_prizes_time = false;
+let screenPrizesTime = false;
 
 export default class FullPageScroll {
   constructor() {
@@ -32,17 +32,15 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
-    
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
-    if (this.activeScreen == 3) {
-      var _this = this;
-      setTimeout(function(){
+    if (this.activeScreen === 3) {
+      let _this = this;
+      setTimeout(function () {
         _this.changePageDisplay();
-      }, 500, _this)
+      }, 500, _this);
     } else {
       this.changePageDisplay();
     }
-    
   }
 
   changePageDisplay() {
@@ -52,27 +50,23 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-  	clearTimeout(screen_prizes_time);
-    
-    if (this.activeScreen == 2 ) {
-      	document.body.classList.add(`show-bq`);
-      	if (this.lastScreen ==1) {
-      		var _this = this;
-      		screen_prizes_time = setTimeout(function(){
-	        	_this.changeVisibilityDisplayActive();
-	      	}, 400, _this)
-      	} else {
-      		this.changeVisibilityDisplayActive();
-      	}
-    }
-    else {
-    	if (this.activeScreen < 2) {
-    		document.body.classList.remove(`show-bq`);
-    	}
+    clearTimeout(screenPrizesTime);
+    if (this.activeScreen === 2) {
+      document.body.classList.add(`show-bq`);
+      if (this.lastScreen === 1) {
+        let _this = this;
+        screenPrizesTime = setTimeout(function () {
+          _this.changeVisibilityDisplayActive();
+        }, 400, _this);
+      } else {
+        this.changeVisibilityDisplayActive();
+      }
+    } else {
+      if (this.activeScreen < 2) {
+        document.body.classList.remove(`show-bq`);
+      }
       this.changeVisibilityDisplayActive();
     }
-    
-
   }
 
   changeVisibilityDisplayActive() {
@@ -82,10 +76,7 @@ export default class FullPageScroll {
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     this.screenElements[this.activeScreen].classList.add(`active`);
-
-
   }
-
 
 
   changeActiveMenuItem() {
@@ -109,7 +100,7 @@ export default class FullPageScroll {
   }
 
   reCalculateActiveScreenPosition(delta) {
-  	this.lastScreen = this.activeScreen;
+    this.lastScreen = this.activeScreen;
     if (delta > 0) {
       this.activeScreen = Math.min(this.screenElements.length - 1, ++this.activeScreen);
     } else {

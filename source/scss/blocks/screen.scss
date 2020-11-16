@@ -11,10 +11,6 @@
 
   &--hidden {
     display: none;
-    /*
-    z-index: 0;
-    opacity: 0;
-    */
   }
 
   @media (max-width: $tablet) and (orientation: portrait) {
@@ -321,14 +317,10 @@
   position:relative;
   z-index: 3;
 
-  /* background-color: $c-dark; */
-
   & .screen__wrapper {
     opacity: 0;
-    /*transition: 0.4s ease;*/
   }
   &.active .screen__wrapper {
-    /*opacity: 1;*/
     animation: fadeIn 0.5s ease forwards;
   }
 

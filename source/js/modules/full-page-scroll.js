@@ -1,5 +1,7 @@
 import throttle from 'lodash/throttle';
 
+var screen_prizes_time = false;
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
@@ -8,6 +10,7 @@ export default class FullPageScroll {
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
     this.activeScreen = 0;
+    this.lastScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
@@ -29,6 +32,7 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     if (this.activeScreen == 3) {
       var _this = this;
@@ -48,17 +52,26 @@ export default class FullPageScroll {
   }
 
   changeVisibilityDisplay() {
-
-    if (this.activeScreen == 2) {
-      document.body.classList.add(`show-bq`);
-      var _this = this;
-      setTimeout(function(){
-        _this.changeVisibilityDisplayActive();
-      }, 500, _this)
-    } else {
-      document.body.classList.remove(`show-bq`);
+  	clearTimeout(screen_prizes_time);
+    
+    if (this.activeScreen == 2 ) {
+      	document.body.classList.add(`show-bq`);
+      	if (this.lastScreen ==1) {
+      		var _this = this;
+      		screen_prizes_time = setTimeout(function(){
+	        	_this.changeVisibilityDisplayActive();
+	      	}, 400, _this)
+      	} else {
+      		this.changeVisibilityDisplayActive();
+      	}
+    }
+    else {
+    	if (this.activeScreen < 2) {
+    		document.body.classList.remove(`show-bq`);
+    	}
       this.changeVisibilityDisplayActive();
     }
+    
 
   }
 
@@ -96,6 +109,7 @@ export default class FullPageScroll {
   }
 
   reCalculateActiveScreenPosition(delta) {
+  	this.lastScreen = this.activeScreen;
     if (delta > 0) {
       this.activeScreen = Math.min(this.screenElements.length - 1, ++this.activeScreen);
     } else {

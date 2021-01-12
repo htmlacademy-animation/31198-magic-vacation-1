@@ -51,3 +51,50 @@
       opacity: 1;
     }
 }
+
+@keyframes riles_item {
+  0% {
+    transform: scale(0);
+    color: transparent;
+  }
+  50% {
+    color: transparent;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    color: #fff;
+  }
+}
+@keyframes riles_text {
+  0% {
+    transform: translateX(15pxs);
+    opacity: 0; 
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes riles_link_fone {
+  0% {
+    transform: translate(16%,-50%);
+    opacity: 0; 
+  }
+  15% {
+    opacity: 1; 
+  }
+  100% {
+    transform: translate(-50%,-50%);
+    opacity: 1; 
+  }
+}
+@keyframes riles_link_text {
+  0% {
+    color: transparent; 
+  }
+  100% {
+    color: $c-dark;
+  }
+}
